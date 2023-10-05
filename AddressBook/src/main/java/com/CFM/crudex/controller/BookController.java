@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.CFM.crudex.entity.Person;
 import com.CFM.crudex.entity.SearchData;
 import com.CFM.crudex.service.PersonService;
-
+/**
+ * Controller for the functionality on the book page, CRUD and search
+ * @author jesseturner
+ *
+ */
 @Controller
 public class BookController {
 	
@@ -91,15 +95,5 @@ public class BookController {
     	return "book";
     }
     
-    @GetMapping("/filter")
-    public String displayFilter(Model model) {
-    	List<Person> persons = service.getAllPersons();
-    	model.addAttribute("persons",persons);
-    	model.addAttribute("message","Address Book");
-    	model.addAttribute("searchData", new SearchData());
-    		
-    	
-        return "book";
-    }
     
 }

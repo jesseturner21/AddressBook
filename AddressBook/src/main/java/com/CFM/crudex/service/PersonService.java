@@ -11,6 +11,12 @@ import com.CFM.crudex.entity.Person;
 import com.CFM.crudex.entity.PersonComparator;
 import com.CFM.crudex.repository.PersonRepository;
 
+/**
+ * Service to create all methods for JpaRepository CREATE, READ, UPDATE, DELETE
+ * 
+ * @author jesseturner
+ *
+ */
 @Service
 public class PersonService implements PersonServiceInterface {
 

@@ -1,5 +1,9 @@
 package com.CFM.crudex.entity;
-
+/**
+ * Used as an object when user wants to search for the address of a name. 
+ * @author jesseturner
+ *
+ */
 public class SearchData {
 	
 	private String name;

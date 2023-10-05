@@ -17,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.CFM.crudex.entity.Person;
 import com.CFM.crudex.service.PersonService;
+/**
+ * Controller for the functionality on API, CRUD
+ * @author jesseturner
+ *
+ */
 
 @RestController
 @Controller

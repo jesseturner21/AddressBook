@@ -7,7 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.CFM.crudex.service.PersonService;
-
+/**
+ * Displays home page
+ * @author jesseturner
+ *
+ */
 @Controller
 public class HomeController {
 	
@@ -16,7 +20,7 @@ public class HomeController {
     @GetMapping("/")
     public String displayHome(Model model) {
     	
-    		model.addAttribute("message","Hello World");
+    		model.addAttribute("message","Welcome to Address Bookie");
     	
         return "home";
     }
