@@ -22,7 +22,7 @@ import com.CFM.crudex.service.PersonServiceImpl;
 @Controller
 @RequestMapping("")
 public class PersonController {
-
+	
 	@Autowired
 	PersonServiceImpl service;
 	@PostMapping("/save")

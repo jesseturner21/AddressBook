@@ -9,6 +9,7 @@
     <header>
         <h1 th:text="${message}">Welcome to My Thymeleaf Page</h1>
     </header>
+    <a class="btn btn-primary" href="/add">Add</a>
 	<table>
 		<thead>
 			<tr>
@@ -38,6 +39,9 @@
 		        </td>
 		        <td style="text-align:center">
 		            <h5 th:text="${person.id}">ID</h5>
+		        </td>
+		        <td>
+		        	<a th:href="@{'/edit/'+${person.id}}">Edit</a>
 		        </td>
 		    </tr>
 		</tbody>
