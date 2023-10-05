@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.CFM.crudex.entity.Person;
 import com.CFM.crudex.entity.SearchData;
 import com.CFM.crudex.entity.User;
-import com.CFM.crudex.service.PersonServiceImpl;
+import com.CFM.crudex.service.PersonService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	PersonServiceImpl service;
+	PersonService service;
 	
 	
 	@GetMapping("/login")

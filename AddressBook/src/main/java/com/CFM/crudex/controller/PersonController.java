@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CFM.crudex.entity.Person;
-import com.CFM.crudex.service.PersonServiceImpl;
+import com.CFM.crudex.service.PersonService;
 
 @RestController
 @Controller
@@ -24,7 +24,7 @@ import com.CFM.crudex.service.PersonServiceImpl;
 public class PersonController {
 	
 	@Autowired
-	PersonServiceImpl service;
+	PersonService service;
 	@PostMapping("/save")
 	public Person savePerson(@RequestBody Person person) {
 		return service.createPerson(person);

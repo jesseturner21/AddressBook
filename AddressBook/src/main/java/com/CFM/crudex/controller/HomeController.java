@@ -6,13 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.CFM.crudex.service.PersonServiceImpl;
+import com.CFM.crudex.service.PersonService;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	PersonServiceImpl service;
+	PersonService service;
     @GetMapping("/")
     public String displayHome(Model model) {
     	

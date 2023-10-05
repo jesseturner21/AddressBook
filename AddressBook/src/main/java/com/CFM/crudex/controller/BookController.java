@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.CFM.crudex.entity.Person;
 import com.CFM.crudex.entity.SearchData;
-import com.CFM.crudex.service.PersonServiceImpl;
+import com.CFM.crudex.service.PersonService;
 
 @Controller
 public class BookController {
 	
 	@Autowired
-	PersonServiceImpl service;
+	PersonService service;
 	
     @GetMapping("/book")
     public String displayBook(Model model) {
