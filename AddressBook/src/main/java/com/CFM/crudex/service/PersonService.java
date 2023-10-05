@@ -16,10 +16,12 @@ public interface PersonService {
 	//Get Person by Id
 	public Person getPersonByID(Integer id);
 	//Get Person by Name
+	public List<Person> getPersonByName(String name);
 	//Update person
 	public Person updatePerson(Person person, int id);
 	//Delete person
 	public void deletePerson(int id);
+	
 	
 
 }

@@ -10,14 +10,20 @@
         <h1 th:text="${message}">Welcome to My Thymeleaf Page</h1>
     </header>
     <a class="btn btn-primary" href="/add">Add</a>
-	<table>
+    <a class="btn btn-secondary" href="/book">All</a>
+    <form th:action="@{/search}" th:object="${searchData}" method="post">
+    	<label for="search">Search (Name):</label>
+    	<input type="text" id="search" name="search" th:field="*{name}">
+		<input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+	<table class="table">
 		<thead>
 			<tr>
-				<th style="text-align:center">Name</th>
-				<th style="text-align:center">Phone Number</th>
-				<th style="text-align:center">Email</th>
-				<th style="text-align:center">Address</th>
-				<th style="text-align:center">ID</th>
+				<th scope="col" style="text-align:center">Name</th>
+				<th scope="col" style="text-align:center">Phone Number</th>
+				<th scope="col" style="text-align:center">Email</th>
+				<th scope="col" style="text-align:center">Address</th>
+				<th scope="col" style="text-align:center">ID</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,10 +47,10 @@
 		            <h5 th:text="${person.id}">ID</h5>
 		        </td>
 		        <td>
-		        	<a th:href="@{'/edit/'+${person.id}}">Edit</a>
+		        	<a class="btn btn-secondary" th:href="@{'/edit/'+${person.id}}">Edit</a>
 		        </td>
 		        <td>
-		        	<a th:href="@{'/delete/'+${person.id}}">Delete</a>
+		        	<a class="btn btn-danger" th:href="@{'/delete/'+${person.id}}">Delete</a>
 		        </td>
 		    </tr>
 		</tbody>

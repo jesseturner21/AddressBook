@@ -30,6 +30,11 @@ public class PersonServiceImpl implements PersonService {
 		
 	}
 	@Override
+	public List<Person> getPersonByName(String name) {
+		
+		return repo.findByName(name);
+	}
+	@Override
 	public Person updatePerson(Person person, int id) {
 		Person old_person = repo.findById(id).orElse(null);
 		old_person.setName(person.getName());
@@ -44,6 +49,7 @@ public class PersonServiceImpl implements PersonService {
 		repo.deleteById(id);
 		
 	}
+	
 	
 
 }

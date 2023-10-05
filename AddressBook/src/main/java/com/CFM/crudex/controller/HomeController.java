@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.CFM.crudex.entity.Person;
+import com.CFM.crudex.entity.SearchData;
 import com.CFM.crudex.service.PersonServiceImpl;
 
 @Controller
@@ -29,10 +30,10 @@ public class HomeController {
     
     @GetMapping("/book")
     public String displayBook(Model model) {
-    	
     	List<Person> persons = service.getAllPersons();
     	model.addAttribute("persons",persons);
     	model.addAttribute("message","Address Book");
+    	model.addAttribute("searchData", new SearchData());
     		
     	
         return "book";
@@ -50,7 +51,6 @@ public class HomeController {
     public String editPerson(Model model, @PathVariable int id) {
     	
     	Person person = service.getPersonByID(id);
-    	System.out.println(person.getId());
     	model.addAttribute("person", person);
     	
         return "add";
@@ -70,6 +70,7 @@ public class HomeController {
     	List<Person> persons = service.getAllPersons();
     	model.addAttribute("persons",persons);
     	model.addAttribute("message","Address Book");
+    	model.addAttribute("searchData", new SearchData());
     	
     	return "book";
     }
@@ -82,6 +83,19 @@ public class HomeController {
     	List<Person> persons = service.getAllPersons();
     	model.addAttribute("persons",persons);
     	model.addAttribute("message","Address Book");
+    	model.addAttribute("searchData", new SearchData());
+    	
+    	return "book";
+    }
+    
+    @PostMapping("/search")
+    public String search(Model model, SearchData searchData) {
+    	
+    	List<Person> persons = service.getPersonByName(searchData.getName());
+    	System.out.println(persons);
+    	model.addAttribute("persons",persons);
+    	model.addAttribute("message","Address Book");
+    	model.addAttribute("searchData", new SearchData());
     	
     	return "book";
     }
