@@ -1,5 +1,6 @@
 package com.CFM.crudex.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.CFM.crudex.entity.Person;
+import com.CFM.crudex.entity.PersonComparator;
 import com.CFM.crudex.repository.PersonRepository;
 
 @Service
@@ -14,6 +16,7 @@ public class PersonService implements PersonServiceInterface {
 
 	@Autowired
 	PersonRepository repo; 
+	
 	public Person createPerson(Person person) {
 		
 		return repo.save(person);
@@ -21,7 +24,11 @@ public class PersonService implements PersonServiceInterface {
 	@Override
 	public List<Person> getAllPersons() {
 		
-		return repo.findAll();
+		List<Person> persons = repo.findAll();
+		
+		Collections.sort(persons, new PersonComparator());
+		
+		return persons;
 	}
 	@Override
 	public Person getPersonByID(Integer id) {
@@ -44,7 +51,7 @@ public class PersonService implements PersonServiceInterface {
 		repo.save(old_person);
 		return old_person;
 	}
-	
+	@Override
 	public void deletePerson(int id) {
 		repo.deleteById(id);
 		

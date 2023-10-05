@@ -90,4 +90,16 @@ public class BookController {
     	
     	return "book";
     }
+    
+    @GetMapping("/filter")
+    public String displayFilter(Model model) {
+    	List<Person> persons = service.getAllPersons();
+    	model.addAttribute("persons",persons);
+    	model.addAttribute("message","Address Book");
+    	model.addAttribute("searchData", new SearchData());
+    		
+    	
+        return "book";
+    }
+    
 }
