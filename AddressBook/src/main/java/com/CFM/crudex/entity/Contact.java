@@ -5,11 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "person_table")
-public class Person {
+public class Contact {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +24,15 @@ public class Person {
 	@Column
 	private String address;
 	
-	public Person() {
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	public Contact() {
 		
 	}
 	
-	public Person(String name, String phoneNumber, String email, String address) {
+	public Contact(String name, String phoneNumber, String email, String address) {
 		super();
 		this.name = name;
 		this.phoneNumber = phoneNumber;

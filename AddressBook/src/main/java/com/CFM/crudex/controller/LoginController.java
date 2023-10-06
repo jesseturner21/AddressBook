@@ -8,16 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.CFM.crudex.entity.Person;
+import com.CFM.crudex.entity.Contact;
 import com.CFM.crudex.entity.SearchData;
 import com.CFM.crudex.entity.User;
-import com.CFM.crudex.service.PersonService;
+import com.CFM.crudex.service.ContactService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	PersonService service;
+	ContactService service;
 	
 	
 	@GetMapping("/login")
@@ -32,7 +32,7 @@ public class LoginController {
 	public String userAccount(User user, Model model) {
 		//insert login validation
 		
-		List<Person> persons = service.getAllPersons();
+		List<Contact> persons = service.getAllContacts();
     	model.addAttribute("persons",persons);
     	model.addAttribute("message","Address Book");
     	model.addAttribute("searchData", new SearchData());

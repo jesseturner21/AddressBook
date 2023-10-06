@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.CFM.crudex.entity.Person;
-import com.CFM.crudex.service.PersonService;
+import com.CFM.crudex.entity.Contact;
+import com.CFM.crudex.service.ContactService;
 /**
  * Controller for the functionality on API, CRUD
  * @author jesseturner
@@ -24,35 +23,34 @@ import com.CFM.crudex.service.PersonService;
  */
 
 @RestController
-@Controller
 @RequestMapping("")
-public class PersonController {
+public class ContactController {
 	
 	@Autowired
-	PersonService service;
+	ContactService service;
 	@PostMapping("/save")
-	public Person savePerson(@RequestBody Person person) {
-		return service.createPerson(person);
+	public Contact savePerson(@RequestBody Contact person) {
+		return service.createContact(person);
 	}
 	
 	@GetMapping("/get/all")
-	public List<Person> getAllPersons() {
-		return service.getAllPersons();
+	public List<Contact> getAllPersons() {
+		return service.getAllContacts();
 	}
 	
 	@GetMapping("/get/{id}")
-	public Person getPerson(@PathVariable Integer id) {
-		return service.getPersonByID(id);
+	public Contact getPerson(@PathVariable Integer id) {
+		return service.getContactByID(id);
 	}
 	
 	@PutMapping("/update/{id}")
-	public Person updatePerson(@RequestBody Person person, @PathVariable int id) {
-		return service.updatePerson(person, id);
+	public Contact updatePerson(@RequestBody Contact person, @PathVariable int id) {
+		return service.updateContact(person, id);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deletePerson(@PathVariable int id) {
-		service.deletePerson(id);
+		service.deleteContact(id);
 		return new ResponseEntity<String>("Successful deletion of Id "+ id, HttpStatus.OK);
 	}
 }

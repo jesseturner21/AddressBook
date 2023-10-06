@@ -6,10 +6,10 @@ import java.util.Comparator;
  * @author jesseturner
  *
  */
-public class PersonComparator implements Comparator<Person> {
+public class ContactComparator implements Comparator<Contact> {
 
 	@Override
-	public int compare(Person person, Person person2) {
+	public int compare(Contact person, Contact person2) {
 		
 		return person.getName().toLowerCase().compareTo(person2.getName().toLowerCase());
 	}

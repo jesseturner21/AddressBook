@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.CFM.crudex.entity.Person;
-import com.CFM.crudex.entity.PersonComparator;
-import com.CFM.crudex.repository.PersonRepository;
+import com.CFM.crudex.entity.Contact;
+import com.CFM.crudex.entity.ContactComparator;
+import com.CFM.crudex.repository.ContactRepository;
 
 /**
  * Service to create all methods for JpaRepository CREATE, READ, UPDATE, DELETE
@@ -18,38 +18,38 @@ import com.CFM.crudex.repository.PersonRepository;
  *
  */
 @Service
-public class PersonService implements PersonServiceInterface {
+public class ContactService implements ContactServiceInterface {
 
 	@Autowired
-	PersonRepository repo; 
+	ContactRepository repo; 
 	
-	public Person createPerson(Person person) {
+	public Contact createContact(Contact person) {
 		
 		return repo.save(person);
 	}
 	@Override
-	public List<Person> getAllPersons() {
+	public List<Contact> getAllContacts() {
 		
-		List<Person> persons = repo.findAll();
+		List<Contact> persons = repo.findAll();
 		
-		Collections.sort(persons, new PersonComparator());
+		Collections.sort(persons, new ContactComparator());
 		
 		return persons;
 	}
 	@Override
-	public Person getPersonByID(Integer id) {
+	public Contact getContactByID(Integer id) {
 		
 		return repo.findById(id).orElse(null);
 		
 	}
 	@Override
-	public List<Person> getPersonByName(String name) {
+	public List<Contact> getContactByName(String name) {
 		
 		return repo.findByName(name);
 	}
 	@Override
-	public Person updatePerson(Person person, int id) {
-		Person old_person = repo.findById(id).orElse(null);
+	public Contact updateContact(Contact person, int id) {
+		Contact old_person = repo.findById(id).orElse(null);
 		old_person.setName(person.getName());
 		old_person.setAddress(person.getAddress());
 		old_person.setPhoneNumber(person.getPhoneNumber());
@@ -58,10 +58,11 @@ public class PersonService implements PersonServiceInterface {
 		return old_person;
 	}
 	@Override
-	public void deletePerson(int id) {
+	public void deleteContact(int id) {
 		repo.deleteById(id);
 		
 	}
+	
 	
 	
 

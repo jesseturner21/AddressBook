@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.CFM.crudex.service.PersonService;
+import com.CFM.crudex.service.ContactService;
 /**
  * Displays home page
  * @author jesseturner
@@ -16,7 +16,7 @@ import com.CFM.crudex.service.PersonService;
 public class HomeController {
 	
 	@Autowired
-	PersonService service;
+	ContactService service;
     @GetMapping("/")
     public String displayHome(Model model) {
     	
