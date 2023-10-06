@@ -8,7 +8,7 @@ import com.CFM.crudex.entity.Contact;
 
 public interface ContactRepository extends JpaRepository< Contact, Integer>{
 
-	List<Contact> findByName(String name);
+	List<Contact> findByUserIdAndName(int id, String name);
 	List<Contact> findByUserId(int id);
 }
 

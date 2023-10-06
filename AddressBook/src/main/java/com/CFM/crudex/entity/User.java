@@ -1,5 +1,6 @@
 package com.CFM.crudex.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -25,6 +26,16 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	List<Contact> contacts;
 	
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -53,10 +64,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public int getId() {
+		return this.id;
+	}
 
 
 	public User() {
-		
+		this.contacts = new ArrayList<Contact>();
 	}
 	
 	public User(String username, String password, String email) {
@@ -65,4 +79,7 @@ public class User {
 		this.password = password;
 		this.setEmail(email);
 	}
+
+
+	
 }

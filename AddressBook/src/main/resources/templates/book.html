@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-    <a href="/" style="text-decoration:none; color:black"> <h1 th:text="${message}">Welcome to My Thymeleaf Page</h1></a>
+    <a href="/" style="text-decoration:none; color:black"> <h1 th:text="${title}">Welcome to My Thymeleaf Page</h1></a>
        
     </header>
     <a class="btn btn-primary" href="/add">Add</a>
@@ -28,30 +28,30 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:if="${persons.empty}">
+			<tr th:if="${contacts.empty}">
 				<td >No Addresses Available</td>
 			</tr>
-			<tr th:each="person : ${persons}">
+			<tr th:each="contact : ${contacts}">
 		        <td style="text-align:center">
-		            <h5 th:text="${person.name}">Name</h5>
+		            <h5 th:text="${contact.name}">Name</h5>
 		        </td>
 		        <td style="text-align:center">
-		            <h5 th:text="${person.phoneNumber}">Phone Number</h5>
+		            <h5 th:text="${contact.phoneNumber}">Phone Number</h5>
 		        </td>
 		        <td style="text-align:center">
-		            <h5 th:text="${person.email}">Email</h5>
+		            <h5 th:text="${contact.email}">Email</h5>
 		        </td>
 		        <td style="text-align:center">
-		            <h5 th:text="${person.address}">Address</h5>
+		            <h5 th:text="${contact.address}">Address</h5>
 		        </td>
 		        <td style="text-align:center">
-		            <h5 th:text="${person.id}">ID</h5>
+		            <h5 th:text="${contact.id}">ID</h5>
 		        </td>
 		        <td>
-		        	<a class="btn btn-secondary" th:href="@{'/edit/'+${person.id}}">Edit</a>
+		        	<a class="btn btn-secondary" th:href="@{'/edit/'+${contact.id}}">Edit</a>
 		        </td>
 		        <td>
-		        	<a class="btn btn-danger" th:href="@{'/delete/'+${person.id}}">Delete</a>
+		        	<a class="btn btn-danger" th:href="@{'/delete/'+${contact.id}}">Delete</a>
 		        </td>
 		    </tr>
 		</tbody>

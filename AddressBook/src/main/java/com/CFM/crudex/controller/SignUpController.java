@@ -7,36 +7,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.CFM.crudex.entity.Contact;
 import com.CFM.crudex.entity.SearchData;
 import com.CFM.crudex.entity.User;
-import com.CFM.crudex.service.ContactService;
 import com.CFM.crudex.service.UserService;
 
-
 @Controller
-@SessionAttributes("user")
-public class LoginController {
+public class SignUpController {
 	
 	@Autowired
-	ContactService service;
-	@Autowired
-	UserService uService;
+	UserService service;
 	
-	@GetMapping("/login")
-	public String displayLogin(Model model) {
-		model.addAttribute("message", "Login");
+	@GetMapping("/signup")
+	public String displaySignUp(Model model) {
+		
+		model.addAttribute("title", "Sign Up");
 		model.addAttribute("user", new User());
 		
-		return "login";
-		
+		return "signup";
 	}
-	@PostMapping("/account")
-	public String userAccount(User user, Model model) {
-		//TODO:insert login validation
-		user = uService.getUserByUsername(user.getUsername()).get(0);
+	
+	@PostMapping("/newUser")
+	public String createNewUser(Model model, User user) {
+		
+		service.createUser(user);
+		
 		List<Contact> contacts = user.getContacts();
 		
 		model.addAttribute("title", "Address Book:" + user.getUsername());
@@ -44,6 +40,8 @@ public class LoginController {
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("searchData", new SearchData());
 		
+		
 		return "book";
 	}
+
 }

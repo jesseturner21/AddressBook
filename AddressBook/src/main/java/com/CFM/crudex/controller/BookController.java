@@ -8,10 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.CFM.crudex.entity.Contact;
 import com.CFM.crudex.entity.SearchData;
+import com.CFM.crudex.entity.User;
 import com.CFM.crudex.service.ContactService;
+import com.CFM.crudex.service.UserService;
 /**
  * Controller for the functionality on the book page, CRUD and search
  * @author jesseturner
@@ -22,28 +25,32 @@ public class BookController {
 	
 	@Autowired
 	ContactService service;
+	@Autowired
+	UserService uService;
 	
-    @GetMapping("/book")
-    public String displayBook(Model model) {
-    	List<Contact> persons = service.getAllContacts();
-    	model.addAttribute("persons",persons);
-    	model.addAttribute("message","Address Book");
-    	model.addAttribute("searchData", new SearchData());
-    		
-    	
-        return "book";
-    }
+//    @GetMapping("/book")
+//    public String displayBook(Model model) {
+//    	List<Contact> persons = service.getAllContacts();
+//    	model.addAttribute("persons",persons);
+//    	model.addAttribute("message","Address Book");
+//    	model.addAttribute("searchData", new SearchData());
+//    		
+//    	
+//        return "book";
+//    }
     
     @GetMapping("/add")
-    public String createPerson(Model model) {
+    public String createPerson(Model model, @SessionAttribute("user") User user) {
     	
-    	model.addAttribute("person", new Contact());
+    	model.addAttribute("title", "Add:" + user.getUsername());
+    	model.addAttribute("contact", new Contact());
     	
     	return "add";
     }
     
     @GetMapping("/edit/{id}")
-    public String editPerson(Model model, @PathVariable int id) {
+    public String editPerson(Model model, @PathVariable int id, @SessionAttribute("user") User user) {
+    	
     	
     	Contact person = service.getContactByID(id);
     	model.addAttribute("person", person);
@@ -52,45 +59,55 @@ public class BookController {
     }
     
     @PostMapping("/submit")
-    public String submit(Contact person, Model model) {
+    public String submit(Contact contact, @SessionAttribute("user") User user, Model model) {
+    	
+    	contact.setUser(user);
+    	
     	//if the id is zero the person is being created
-    	if(person.getId() == 0) {
-    		service.createContact(person);
+    	if(contact.getId() == 0) {
+    		service.createContact(contact);
     	}
     	// if they have id then update 
     	else {
-    		service.updateContact(person, person.getId());
+    		service.updateContact(contact, contact.getId());
     	}
     	
-    	List<Contact> persons = service.getAllContacts();
-    	model.addAttribute("persons",persons);
-    	model.addAttribute("message","Address Book");
-    	model.addAttribute("searchData", new SearchData());
+    	//set the contacts to all contacts with users id
+    	user.setContacts(service.getContactsByUserId(user.getId()));
+    	
+    	List<Contact> contacts = user.getContacts();
+		
+		model.addAttribute("title", "Address Book:" + user.getUsername());
+		model.addAttribute("user", user);
+		model.addAttribute("contacts", contacts);
+		model.addAttribute("searchData", new SearchData());
     	
     	return "book";
     }
     
     @GetMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable int id) {
+    public String delete(Model model,User user, @PathVariable int id) {
     	
     	service.deleteContact(id);
     	
-    	List<Contact> persons = service.getAllContacts();
-    	model.addAttribute("persons",persons);
-    	model.addAttribute("message","Address Book");
-    	model.addAttribute("searchData", new SearchData());
+    	List<Contact> contacts = user.getContacts();
+		
+		model.addAttribute("title", "Address Book:" + user.getUsername());
+		model.addAttribute("user", user);
+		model.addAttribute("contacts", contacts);
+		model.addAttribute("searchData", new SearchData());
     	
     	return "book";
     }
     
     @PostMapping("/search")
-    public String search(Model model, SearchData searchData) {
+    public String search(Model model, @SessionAttribute("user") User user, SearchData searchData) {
     	
-    	List<Contact> persons = service.getContactByName(searchData.getName());
-    	System.out.println(persons);
-    	model.addAttribute("persons",persons);
-    	model.addAttribute("message","Address Book");
-    	model.addAttribute("searchData", new SearchData());
+    	model.addAttribute("title", "Address Book:" + user.getUsername());
+		model.addAttribute("user", user);
+		List<Contact> contacts = service.getContactByUserIdAndName(user.getId(), searchData.getName());
+		model.addAttribute("contacts", contacts);
+		model.addAttribute("searchData", new SearchData());
     	
     	return "book";
     }

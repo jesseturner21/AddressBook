@@ -23,9 +23,9 @@ public class ContactService implements ContactServiceInterface {
 	@Autowired
 	ContactRepository repo; 
 	
-	public Contact createContact(Contact person) {
+	public Contact createContact(Contact contact) {
 		
-		return repo.save(person);
+		return repo.save(contact);
 	}
 	@Override
 	public List<Contact> getAllContacts() {
@@ -43,9 +43,9 @@ public class ContactService implements ContactServiceInterface {
 		
 	}
 	@Override
-	public List<Contact> getContactByName(String name) {
+	public List<Contact> getContactByUserIdAndName(int id,String name) {
 		
-		return repo.findByName(name);
+		return repo.findByUserIdAndName(id, name);
 	}
 	@Override
 	public Contact updateContact(Contact person, int id) {
@@ -61,6 +61,11 @@ public class ContactService implements ContactServiceInterface {
 	public void deleteContact(int id) {
 		repo.deleteById(id);
 		
+	}
+	@Override
+	public List<Contact> getContactsByUserId(int id) {
+		
+		return repo.findByUserId(id);
 	}
 	
 	

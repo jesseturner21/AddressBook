@@ -2,7 +2,7 @@ package com.CFM.crudex.entity;
 
 import java.util.Comparator;
 /**
- * Implements Comparator to compare the persons by name and ignoring case. 
+ * Implements Comparator to compare the contacts by name and ignoring case. 
  * @author jesseturner
  *
  */
