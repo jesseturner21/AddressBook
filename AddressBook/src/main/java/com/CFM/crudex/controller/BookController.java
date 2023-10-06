@@ -28,21 +28,11 @@ public class BookController {
 	@Autowired
 	UserService uService;
 	
-//    @GetMapping("/book")
-//    public String displayBook(Model model) {
-//    	List<Contact> persons = service.getAllContacts();
-//    	model.addAttribute("persons",persons);
-//    	model.addAttribute("message","Address Book");
-//    	model.addAttribute("searchData", new SearchData());
-//    		
-//    	
-//        return "book";
-//    }
     
     @GetMapping("/add")
     public String createPerson(Model model, @SessionAttribute("user") User user) {
     	
-    	model.addAttribute("title", "Add:" + user.getUsername());
+    	model.addAttribute("title", "Add: " + user.getUsername());
     	model.addAttribute("contact", new Contact());
     	
     	return "add";
@@ -53,7 +43,7 @@ public class BookController {
     	
     	
     	Contact contact = service.getContactByUserIdAndId(user.getId(), id);
-    	model.addAttribute("title", "Add:" + user.getUsername());
+    	model.addAttribute("title", "Add: " + user.getUsername());
     	model.addAttribute("contact", contact);
     	
         return "add";
@@ -78,7 +68,7 @@ public class BookController {
     	
     	List<Contact> contacts = user.getContacts();
 		
-		model.addAttribute("title", "Address Book:" + user.getUsername());
+		model.addAttribute("title", "Address Book: " + user.getUsername());
 		model.addAttribute("user", user);
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("searchData", new SearchData());
@@ -95,7 +85,7 @@ public class BookController {
     	
     	List<Contact> contacts = user.getContacts();
 		
-		model.addAttribute("title", "Address Book:" + user.getUsername());
+		model.addAttribute("title", "Address Book: " + user.getUsername());
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("searchData", new SearchData());
     	
@@ -105,13 +95,23 @@ public class BookController {
     @PostMapping("/search")
     public String search(Model model, @SessionAttribute("user") User user, SearchData searchData) {
     	
-    	model.addAttribute("title", "Address Book:" + user.getUsername());
-		model.addAttribute("user", user);
+    	model.addAttribute("title", "Address Book: " + user.getUsername());
 		List<Contact> contacts = service.getContactByUserIdAndName(user.getId(), searchData.getName());
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("searchData", new SearchData());
     	
     	return "book";
+    }
+    
+    @GetMapping("all")
+    public String all(Model model, @SessionAttribute("user") User user) {
+    	
+    	model.addAttribute("title", "Address Book: " + user.getUsername());
+		List<Contact> contacts = service.getContactsByUserId(user.getId());
+		model.addAttribute("contacts", contacts);
+		model.addAttribute("searchData", new SearchData());
+		
+		return "book";
     }
     
     

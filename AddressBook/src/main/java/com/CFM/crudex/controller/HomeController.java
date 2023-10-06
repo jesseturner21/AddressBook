@@ -20,7 +20,7 @@ public class HomeController {
     @GetMapping("/")
     public String displayHome(Model model) {
     	
-    		model.addAttribute("message","Welcome to Address Bookie");
+    		model.addAttribute("title","The Address Book");
     	
         return "home";
     }

@@ -11,7 +11,7 @@
        
     </header>
     <a class="btn btn-primary" href="/add">Add</a>
-    <a class="btn btn-secondary" href="/book">All</a>
+    <a class="btn btn-secondary" href="/all">All</a>
     <form th:action="@{/search}" th:object="${searchData}" method="post">
     	<label for="search">Search (Name):</label>
     	<input type="text" id="search" name="search" th:field="*{name}">
