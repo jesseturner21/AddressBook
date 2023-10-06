@@ -15,7 +15,7 @@ public interface ContactServiceInterface {
 	//Get all 
 	public List<Contact> getAllContacts();
 	//Get Contact by Id
-	public Contact getContactByID(Integer id);
+	public Contact getContactByUserIdAndId(int userId,int id);
 	//Get Contact by Name
 	public List<Contact> getContactByUserIdAndName(int id, String name);
 	//Get Contact by User Id

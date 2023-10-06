@@ -37,9 +37,9 @@ public class ContactService implements ContactServiceInterface {
 		return persons;
 	}
 	@Override
-	public Contact getContactByID(Integer id) {
+	public Contact getContactByUserIdAndId(int userId,int id) {
 		
-		return repo.findById(id).orElse(null);
+		return repo.findByUserIdAndId(userId, id).get(0);
 		
 	}
 	@Override

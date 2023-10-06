@@ -52,8 +52,9 @@ public class BookController {
     public String editPerson(Model model, @PathVariable int id, @SessionAttribute("user") User user) {
     	
     	
-    	Contact person = service.getContactByID(id);
-    	model.addAttribute("person", person);
+    	Contact contact = service.getContactByUserIdAndId(user.getId(), id);
+    	model.addAttribute("title", "Add:" + user.getUsername());
+    	model.addAttribute("contact", contact);
     	
         return "add";
     }
@@ -86,14 +87,15 @@ public class BookController {
     }
     
     @GetMapping("/delete/{id}")
-    public String delete(Model model,User user, @PathVariable int id) {
+    public String delete(Model model,@SessionAttribute("user") User user, @PathVariable int id) {
     	
     	service.deleteContact(id);
+    	//reset the contacts
+    	user.setContacts(service.getContactsByUserId(user.getId()));
     	
     	List<Contact> contacts = user.getContacts();
 		
 		model.addAttribute("title", "Address Book:" + user.getUsername());
-		model.addAttribute("user", user);
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("searchData", new SearchData());
     	

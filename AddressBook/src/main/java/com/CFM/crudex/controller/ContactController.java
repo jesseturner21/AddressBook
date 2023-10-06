@@ -37,12 +37,12 @@ public class ContactController {
 	public List<Contact> getAllPersons() {
 		return service.getAllContacts();
 	}
-	
-	@GetMapping("/get/{id}")
-	public Contact getPerson(@PathVariable Integer id) {
-		return service.getContactByID(id);
-	}
-	
+	// TODO: the user functionality changes the api
+//	@GetMapping("/get/{id}")
+//	public Contact getPerson(@PathVariable Integer id) {
+//		return service.getContactByUserID(id);
+//	}
+//	
 	@PutMapping("/update/{id}")
 	public Contact updatePerson(@RequestBody Contact person, @PathVariable int id) {
 		return service.updateContact(person, id);
