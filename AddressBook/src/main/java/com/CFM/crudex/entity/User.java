@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class User {
@@ -17,10 +19,13 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column
+	@NotEmpty(message="Input Username")
 	private String username;
 	@Column
+	@NotEmpty(message="Input Password")
 	private String password;
 	@Column
+	
 	private String email;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

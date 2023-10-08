@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import com.CFM.crudex.entity.SearchData;
 import com.CFM.crudex.entity.User;
 import com.CFM.crudex.service.ContactService;
 import com.CFM.crudex.service.UserService;
+
+import jakarta.validation.Valid;
 /**
  * Controller for the functionality on the book page, CRUD and search
  * @author jesseturner
@@ -32,7 +35,7 @@ public class BookController {
     @GetMapping("/add")
     public String createPerson(Model model, @SessionAttribute("user") User user) {
     	
-    	model.addAttribute("title", "Add: " + user.getUsername());
+    	model.addAttribute("title", "Contact for " + user.getUsername());
     	model.addAttribute("contact", new Contact());
     	
     	return "add";
@@ -43,22 +46,27 @@ public class BookController {
     	
     	
     	Contact contact = service.getContactByUserIdAndId(user.getId(), id);
-    	model.addAttribute("title", "Add: " + user.getUsername());
+    	model.addAttribute("title", "Contact for " + user.getUsername());
     	model.addAttribute("contact", contact);
     	
         return "add";
     }
     
     @PostMapping("/submit")
-    public String submit(Contact contact, @SessionAttribute("user") User user, Model model) {
+    public String submit(@Valid Contact contact, BindingResult bindingResult, @SessionAttribute("user") User user, Model model) {
+    	
+    	if (bindingResult.hasErrors()) {
+			model.addAttribute("title", "Contact for " + user.getUsername());
+			return "add";
+    	}
     	
     	contact.setUser(user);
     	
-    	//if the id is zero the person is being created
+    	//if the id is zero, check fields then create
     	if(contact.getId() == 0) {
     		service.createContact(contact);
     	}
-    	// if they have id then update 
+    	// if they have id, check fields then update 
     	else {
     		service.updateContact(contact, contact.getId());
     	}

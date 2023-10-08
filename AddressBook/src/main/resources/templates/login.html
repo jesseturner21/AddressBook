@@ -7,14 +7,18 @@
 </head>
 <body>
     <header>
-         <a href="/" style="text-decoration:none; color:black"><h1 th:text="${message}">Welcome to Login</h1></a>
+         <a href="/" style="text-decoration:none; color:black"><h1 th:text="${title}">Welcome to Login</h1></a>
     </header>
     <form th:action="@{/account}" th:object="${user}" method="post">
     	<label for="username">UserName:</label>
-    	<input type="text" id="username" name="username" th:field="*{username}">
+    	<input type="text" id="username" name="username" th:field="*{username}" >
+    	<span th:if="${#fields.hasErrors('username')}"
+              th:errors="*{username}" class="text-danger"></span>
     	</br>
    		 <label for="password">Password:</label>
-    	<input type="password" id="password" name="password" th:field="*{password}">
+    	<input type="password" id="password" name="password" th:field="*{password}" >
+    	<span th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}" class="text-danger"></span>
     	</br>
     	<input class="btn btn-primary" type="submit" id="submit" value="submit">
     </form>

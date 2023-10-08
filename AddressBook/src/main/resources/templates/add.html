@@ -12,6 +12,8 @@
 	<form th:action="@{/submit}" th:object="${contact}" method="post">
 		<label for="name">Name:</label>
 		<input type="text" id="name" name="name" th:field="*{name}">
+		<span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}" class="text-danger"></span>
 		</br>
 		<label for="phoneNumber">Phone Number:</label>
 		<input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}">
