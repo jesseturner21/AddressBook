@@ -1,0 +1,50 @@
+/* ALL */
+:root {
+	--midnight-green: #08494Cff;
+	--midnight-green-2: #02393Fff;
+	--light-green: #AEF17Aff;
+	--mint-cream: #F3FBF0ff;
+	--tiffany-blue: #8BEBD7ff;
+}
+body{
+	background-color: var(--midnight-green);
+}
+.aligner{
+	min-height: 100vh;
+}
+h1{
+	color:var(--mint-cream);
+}
+.btn-primary{
+	background-color:var(--light-green);
+	color:var(--midnight-green);
+	border:none;
+	margin:20px;
+}
+.btn-primary:hover{
+	background-color:#8BC954;
+	color:var(--midnight-green);
+	border:none;
+}
+.btn-secondary{
+	background-color:var(--tiffany-blue);
+	color:var(--midnight-green);
+	border:none;
+}
+.btn-secondary:hover{
+	background-color:#5EC7A6;
+	color:var(--midnight-green);
+	border:none;
+}
+/* FORMS */
+label{
+	color:var(--mint-cream);
+}
+input{
+	margin:5px;
+}
+/* BOOK*/
+.btn-add{
+	margin:0px;
+}
+
