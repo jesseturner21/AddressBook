@@ -41,6 +41,14 @@ public class SignUpController {
 			model.addAttribute("title", "Sign Up");
 	        return "signup"; 
 	    }
+		
+		//CHECK USERNAME IS AVAILABLE
+		if(!service.getUserByUsername(user.getUsername()).isEmpty()) {
+			bindingResult.rejectValue("username", "wrong.username", "Username is already taken");
+			model.addAttribute("title", "Sign Up");
+			return "signup";
+		}
+		//CREATE USER
 		service.createUser(user);
 		
 		List<Contact> contacts = user.getContacts();
