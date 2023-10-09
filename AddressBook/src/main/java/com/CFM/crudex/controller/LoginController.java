@@ -28,7 +28,7 @@ public class LoginController {
 	@Autowired
 	UserService uService;
 	
-	@GetMapping("/login")
+	@GetMapping({"/", "/login"})
 	public String displayLogin(Model model) {
 		model.addAttribute("title", "Login");
 		model.addAttribute("user", new User());

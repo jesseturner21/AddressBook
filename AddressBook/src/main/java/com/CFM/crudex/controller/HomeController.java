@@ -15,15 +15,15 @@ import com.CFM.crudex.service.ContactService;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	ContactService service;
-    @GetMapping("/")
-    public String displayHome(Model model) {
-    	
-    		model.addAttribute("title","The Address Book");
-    	
-        return "home";
-    }
+//	@Autowired
+//	ContactService service;
+//    @GetMapping("/")
+//    public String displayHome(Model model) {
+//    	
+//    		model.addAttribute("title","The Address Book");
+//    	
+//        return "home";
+//    }
     
     
 }
