@@ -67,7 +67,7 @@ public class LoginController {
 		
 		// GET ACCOUNT
 		user = uService.getUserByUsername(user.getUsername()).get(0);
-		List<Contact> contacts = user.getContacts();
+		List<Contact> contacts = service.getContactsByUserId(user.getId());
 		
 		model.addAttribute("title", "Address Book: " + user.getUsername());
 		model.addAttribute("user", user);

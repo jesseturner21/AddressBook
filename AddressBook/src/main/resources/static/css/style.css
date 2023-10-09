@@ -40,8 +40,8 @@ h1{
 label{
 	color:var(--mint-cream);
 }
-input{
-	margin:5px;
+input {
+    margin: 10px; 
 }
 /* BOOK*/
 .btn-add{
