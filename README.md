@@ -12,7 +12,7 @@ Before running this application, ensure you have the following installed:
 
 Setup Instructions
 1. Clone this repository.
-2. Configure the database connection in `src/main/resources/application.properties` (Script is in zip file). 
+2. Configure the database connection in `src/main/resources/application.properties` (Scripts). 
 3. Build the project with Maven.
 4. Run the application: as a java Spring Boot App
 5. Go to http://localhost:8080/ to see application (login: username=test, password=test)
