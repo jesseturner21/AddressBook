@@ -1,9 +1,9 @@
 Address Book Spring Boot Application
 
- Project Overview
+ #Project Overview
 This Spring Boot application is a simple address book that allows users to manage their contacts.
 
-Prerequisites
+#Prerequisites
 Before running this application, ensure you have the following installed:
 
 - Java 
@@ -17,7 +17,7 @@ Setup Instructions
 4. Run the application: as a java Spring Boot App
 5. Go to http://localhost:8080/ to see application (login: username=test, password=test)
 
-Configuration
+#Configuration
 You can customize the database connection details in the `application.properties` file.
 
 
@@ -26,5 +26,5 @@ spring.datasource.username=root
 spring.datasource.password=root
 
 
-Contact Information 
+#Contact Information 
 For any questions or assistance, contact Jesse Turner - jesse.turner2021@gmail.com. 
