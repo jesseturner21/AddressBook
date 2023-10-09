@@ -1,16 +1,13 @@
 package com.CFM.crudex.service;
 
-import java.util.Collections;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.CFM.crudex.entity.Contact;
-import com.CFM.crudex.entity.ContactComparator;
 import com.CFM.crudex.entity.User;
-import com.CFM.crudex.repository.ContactRepository;
 import com.CFM.crudex.repository.UserRepository;
 
 /**

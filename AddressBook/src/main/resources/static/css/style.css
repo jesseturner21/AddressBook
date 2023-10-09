@@ -15,6 +15,13 @@ body{
 h1{
 	color:var(--mint-cream);
 }
+#title{
+	font-size:80px;
+	position:absolute;
+	top:0%;
+	left:50%;
+	transform: translateX(-50%);
+}
 .btn-primary{
 	background-color:var(--light-green);
 	color:var(--midnight-green);
@@ -40,11 +47,15 @@ h1{
 label{
 	color:var(--mint-cream);
 }
-input{
-	margin:5px;
+input {
+    margin: 10px; 
 }
 /* BOOK*/
 .btn-add{
 	margin:0px;
+}
+#book{
+	position:relative;
+	top:120px;
 }
 

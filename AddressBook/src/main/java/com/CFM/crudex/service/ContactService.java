@@ -28,15 +28,6 @@ public class ContactService implements ContactServiceInterface {
 		return repo.save(contact);
 	}
 	@Override
-	public List<Contact> getAllContacts() {
-		
-		List<Contact> persons = repo.findAll();
-		
-		Collections.sort(persons, new ContactComparator());
-		
-		return persons;
-	}
-	@Override
 	public Contact getContactByUserIdAndId(int userId,int id) {
 		
 		return repo.findByUserIdAndId(userId, id).get(0);
@@ -65,7 +56,12 @@ public class ContactService implements ContactServiceInterface {
 	@Override
 	public List<Contact> getContactsByUserId(int id) {
 		
-		return repo.findByUserId(id);
+		
+		List<Contact> contacts = repo.findByUserId(id);
+		System.out.println(contacts);
+		Collections.sort(contacts, new ContactComparator());
+		System.out.println(contacts);
+		return contacts;
 	}
 	
 	

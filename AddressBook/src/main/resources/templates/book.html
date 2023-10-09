@@ -10,14 +10,14 @@
 <div class="aligner d-flex justify-content-center ">
 	<div class="container text-center">
     <header>
-    <a href="/" style="text-decoration:none; color:black"> <h1 th:text="${title}">Welcome to My Thymeleaf Page</h1></a>
-       
+   		<h1 id="title">The Address Book</h1>
     </header>
-    <a class="btn btn-primary btn-add" href="/add">Add</a>
+    <div id="book">
+    <a class="btn btn-primary btn-add" href="/add">Add Contact</a>
     <form th:action="@{/search}" th:object="${searchData}" method="post">
     	<label for="search">Search (Name):</label>
     	<input type="text" id="search" name="search" th:field="*{name}">
-		<input class="btn btn-primary" type="submit" value="Submit">
+		<input class="btn btn-primary" type="submit" value="Search">
 		<span><a class="btn btn-secondary" href="/all">All</a></span>
 		</form>
 	<table class="table table-light">
@@ -66,11 +66,9 @@
 		        </td>
 		    </tr>
 		</tbody>
-		
-		
-	
 	</table>
-    <!-- add a list of people as address book  -->
+    </div>
+    
 </div>
 </div>
 </body>

@@ -10,6 +10,7 @@
 <div class="aligner d-flex justify-content-center align-items-center">
 	<div class="container text-center">
     <header>
+    	<h1 id="title">The Address Book</h1>
          <a href="/" style="text-decoration:none; color:black"><h1 th:text="${title}">Welcome to Login</h1></a>
     </header>
     <form th:action="@{/account}" th:object="${user}" method="post">
@@ -25,6 +26,7 @@
     	</br>
     	<input class="btn btn-primary" type="submit" id="submit" value="Submit">
     </form>
+    <a style="color:grey;" href="signup">Don't have an account? Sign Up</a>
    </div>
    </div>
 </html>

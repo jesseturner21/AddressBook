@@ -12,8 +12,6 @@ public interface ContactServiceInterface {
 	
 	//Create Contact
 	public Contact createContact(Contact contact);
-	//Get all 
-	public List<Contact> getAllContacts();
 	//Get Contact by Id
 	public Contact getContactByUserIdAndId(int userId,int id);
 	//Get Contact by Name

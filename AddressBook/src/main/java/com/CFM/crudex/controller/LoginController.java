@@ -28,7 +28,7 @@ public class LoginController {
 	@Autowired
 	UserService uService;
 	
-	@GetMapping("/login")
+	@GetMapping({"/", "/login"})
 	public String displayLogin(Model model) {
 		model.addAttribute("title", "Login");
 		model.addAttribute("user", new User());
@@ -67,7 +67,7 @@ public class LoginController {
 		
 		// GET ACCOUNT
 		user = uService.getUserByUsername(user.getUsername()).get(0);
-		List<Contact> contacts = user.getContacts();
+		List<Contact> contacts = service.getContactsByUserId(user.getId());
 		
 		model.addAttribute("title", "Address Book: " + user.getUsername());
 		model.addAttribute("user", user);
