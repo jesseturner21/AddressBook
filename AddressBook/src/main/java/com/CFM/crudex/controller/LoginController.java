@@ -54,7 +54,7 @@ public class LoginController {
 		}
 		
 		// CHECK PASSWORD
-		// Get password for comparison
+		// Get password for comparison, takes username - gets user - gets user password
 		String realPassword = uService.getUserByUsername(user.getUsername()).get(0).getPassword();
 		
 		//Compare, if wrong reject 
@@ -69,7 +69,6 @@ public class LoginController {
 		user = uService.getUserByUsername(user.getUsername()).get(0);
 		List<Contact> contacts = service.getContactsByUserId(user.getId());
 		
-		model.addAttribute("title", "Address Book: " + user.getUsername());
 		model.addAttribute("user", user);
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("searchData", new SearchData());

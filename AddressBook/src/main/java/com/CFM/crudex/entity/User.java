@@ -24,7 +24,6 @@ public class User {
 	@NotEmpty(message="Input Password")
 	private String password;
 	@Column
-	
 	private String email;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

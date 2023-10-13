@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 public class SignUpController {
 	
 	@Autowired
-	UserService service;
+	UserService uService;
 	
 	@GetMapping("/signup")
 	public String displaySignUp(Model model) {
@@ -37,19 +37,18 @@ public class SignUpController {
 	public String createNewUser(Model model, @Valid User user, BindingResult bindingResult) {
 		// CHECK FIELDS
 		if (bindingResult.hasErrors()) {
-
 			model.addAttribute("title", "Sign Up");
 	        return "signup"; 
 	    }
 		
 		//CHECK USERNAME IS AVAILABLE
-		if(!service.getUserByUsername(user.getUsername()).isEmpty()) {
+		if(!uService.getUserByUsername(user.getUsername()).isEmpty()) {
 			bindingResult.rejectValue("username", "wrong.username", "Username is already taken");
 			model.addAttribute("title", "Sign Up");
 			return "signup";
 		}
 		//CREATE USER
-		service.createUser(user);
+		uService.createUser(user);
 		
 		List<Contact> contacts = user.getContacts();
 		
